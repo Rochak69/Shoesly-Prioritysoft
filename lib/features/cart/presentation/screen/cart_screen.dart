@@ -36,7 +36,7 @@ class CartScreen extends StatelessWidget {
                   ),
                   color: AppColors.colorRed,
                 ),
-                child: Icon(Icons.delete),
+                child: const Icon(Icons.delete),
               ),
             ],
           ),
