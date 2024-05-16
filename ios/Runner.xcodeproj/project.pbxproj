@@ -11,6 +11,7 @@
 		2253A82AF438674CC0E2AD62 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE7CE69E4EB810BE617F8CC /* Pods_Runner.framework */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
+		3D43394436D9A0835898EC57 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E99A66D131394CE1C944D53 /* GoogleService-Info.plist */; };
 		449E80AF96ECA511CBD62B9B /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56785E1D58D27C19B4B949F9 /* Pods_RunnerTests.framework */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
@@ -55,6 +56,7 @@
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		56785E1D58D27C19B4B949F9 /* Pods_RunnerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunnerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E28D67C026120D0A2BF7440 /* Pods-Runner.profile-production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile-production.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile-production.xcconfig"; sourceTree = "<group>"; };
+		5E99A66D131394CE1C944D53 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Runner/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		64B01729DDBC38064CEAB4D3 /* Pods-Runner.debug-production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug-production.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug-production.xcconfig"; sourceTree = "<group>"; };
 		652D0D049B93E5534FE72522 /* Pods-Runner.release-development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release-development.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release-development.xcconfig"; sourceTree = "<group>"; };
 		6A4AE2C02E85515B9C80D336 /* Pods-RunnerTests.profile-production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile-production.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile-production.xcconfig"; sourceTree = "<group>"; };
@@ -138,7 +140,6 @@
 				802FB1611305AC7C25B5F054 /* Pods-RunnerTests.profile-staging.xcconfig */,
 				880D10347650AAD32F9014CA /* Pods-RunnerTests.profile-development.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -162,6 +163,7 @@
 				331C8082294A63A400263BE5 /* RunnerTests */,
 				67A5CD45B408420B5E7B7434 /* Pods */,
 				4C0B6F7A0E06563554CC8BFB /* Frameworks */,
+				5E99A66D131394CE1C944D53 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -288,6 +290,7 @@
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
+				3D43394436D9A0835898EC57 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,7 +509,7 @@
 					"@executable_path/Frameworks",
 				);
 				PACKAGE_CONFIG = .dart_tool/package_config.json;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.verygoodcore.project-init";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rochak.shoesly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -524,7 +527,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.verygoodcore.project-init.RunnerTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rochak.shoesly.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -600,7 +603,7 @@
 					"@executable_path/Frameworks",
 				);
 				PACKAGE_CONFIG = .dart_tool/package_config.json;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.verygoodcore.project-init";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rochak.shoesly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -617,7 +620,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.verygoodcore.project-init.RunnerTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rochak.shoesly.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
@@ -689,7 +692,7 @@
 					"@executable_path/Frameworks",
 				);
 				PACKAGE_CONFIG = .dart_tool/package_config.json;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.verygoodcore.project-init";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rochak.shoesly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -706,7 +709,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.verygoodcore.project-init";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rochak.shoesly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
@@ -783,7 +786,7 @@
 					"@executable_path/Frameworks",
 				);
 				PACKAGE_CONFIG = .dart_tool/package_config.json;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.verygoodcore.project-init.dev";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rochak.shoesly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -801,7 +804,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.verygoodcore.project-init.RunnerTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rochak.shoesly.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -875,7 +878,7 @@
 					"@executable_path/Frameworks",
 				);
 				PACKAGE_CONFIG = .dart_tool/package_config.json;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.verygoodcore.project-init.dev";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rochak.shoesly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -892,7 +895,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.verygoodcore.project-init.RunnerTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rochak.shoesly.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
@@ -966,7 +969,7 @@
 					"@executable_path/Frameworks",
 				);
 				PACKAGE_CONFIG = .dart_tool/package_config.json;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.verygoodcore.project-init.dev";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rochak.shoesly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -983,7 +986,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.verygoodcore.project-init.RunnerTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rochak.shoesly.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
@@ -1060,7 +1063,7 @@
 					"@executable_path/Frameworks",
 				);
 				PACKAGE_CONFIG = .dart_tool/package_config.json;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.verygoodcore.project-init.stg";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rochak.shoesly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1078,7 +1081,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.verygoodcore.project-init.RunnerTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rochak.shoesly.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1154,7 +1157,7 @@
 					"@executable_path/Frameworks",
 				);
 				PACKAGE_CONFIG = .dart_tool/package_config.json;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.verygoodcore.project-init.stg";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rochak.shoesly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1171,7 +1174,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.verygoodcore.project-init.RunnerTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rochak.shoesly.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
@@ -1243,7 +1246,7 @@
 					"@executable_path/Frameworks",
 				);
 				PACKAGE_CONFIG = .dart_tool/package_config.json;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.verygoodcore.project-init.stg";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rochak.shoesly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1260,7 +1263,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.verygoodcore.project-init.RunnerTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rochak.shoesly.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";

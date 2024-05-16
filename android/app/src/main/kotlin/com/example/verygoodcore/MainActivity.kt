@@ -1,4 +1,4 @@
-package com.example.verygoodcore.project_init
+package com.rochak.shoesly
 
 import io.flutter.embedding.android.FlutterActivity
 

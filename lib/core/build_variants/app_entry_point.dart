@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +11,7 @@ import 'package:project_init/core/dependency_injection/dependency_injection.dart
 import 'package:project_init/core/route/app_router.dart';
 import 'package:project_init/core/theme/app_theme.dart';
 import 'package:project_init/features/login/presentation/bloc/login_bloc.dart';
+import 'package:project_init/firebase_options.dart';
 
 class AppEntryPoint {
   AppEntryPoint(AppConfiguration buildVariant) {
@@ -22,6 +24,9 @@ class AppEntryPoint {
     AppConfiguration? envSettings,
   ) async {
     WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     await configureDependencies();
 
     if (Platform.isAndroid) {
