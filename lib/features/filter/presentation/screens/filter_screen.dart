@@ -141,6 +141,7 @@ class FilterScreen extends StatelessWidget {
                     itemCount: filterList.length,
                   ),
                 ),
+                const VerticalSpacing(10),
               ],
             ),
           ),
