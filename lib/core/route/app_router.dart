@@ -37,7 +37,7 @@ class AppRouter extends _$AppRouter {
           page: UnknownRoute.page,
         ),
         CustomRoute(
-          transitionsBuilder: TransitionsBuilders.slideLeft,
+          transitionsBuilder: TransitionsBuilders.slideBottom,
           path: HomeRoute.name.routePath(),
           page: HomeRoute.page,
         ),
