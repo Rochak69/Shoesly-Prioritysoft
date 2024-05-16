@@ -3,7 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:project_init/core/dio_provider/api_error.dart';
+import 'package:project_init/core/firebase_provider/api_error.dart';
 import 'package:project_init/enum/the_states.dart';
 import 'package:project_init/features/login/data/model/login_response.dart';
 import 'package:project_init/features/login/domain/usecase/login_usecase.dart';

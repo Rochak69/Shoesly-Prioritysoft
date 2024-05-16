@@ -21,6 +21,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const CartScreen(),
       );
     },
+    FilterRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const FilterScreen(),
+      );
+    },
     HomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -33,12 +39,32 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const LoginScreen(),
       );
     },
+    OrderSummaryRoute.name: (routeData) {
+      final args = routeData.argsAs<OrderSummaryRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: OrderSummaryScreen(
+          order: args.order,
+          key: args.key,
+        ),
+      );
+    },
     ProductRoute.name: (routeData) {
       final args = routeData.argsAs<ProductRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: ProductScreen(
           product: args.product,
+          key: args.key,
+        ),
+      );
+    },
+    ReviewRoute.name: (routeData) {
+      final args = routeData.argsAs<ReviewRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ReviewScreen(
+          shoeId: args.shoeId,
           key: args.key,
         ),
       );
@@ -73,6 +99,20 @@ class CartRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [FilterScreen]
+class FilterRoute extends PageRouteInfo<void> {
+  const FilterRoute({List<PageRouteInfo>? children})
+      : super(
+          FilterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FilterRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [HomeScreen]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
@@ -98,6 +138,44 @@ class LoginRoute extends PageRouteInfo<void> {
   static const String name = 'LoginRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [OrderSummaryScreen]
+class OrderSummaryRoute extends PageRouteInfo<OrderSummaryRouteArgs> {
+  OrderSummaryRoute({
+    required OrderSummaryModel order,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          OrderSummaryRoute.name,
+          args: OrderSummaryRouteArgs(
+            order: order,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'OrderSummaryRoute';
+
+  static const PageInfo<OrderSummaryRouteArgs> page =
+      PageInfo<OrderSummaryRouteArgs>(name);
+}
+
+class OrderSummaryRouteArgs {
+  const OrderSummaryRouteArgs({
+    required this.order,
+    this.key,
+  });
+
+  final OrderSummaryModel order;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'OrderSummaryRouteArgs{order: $order, key: $key}';
+  }
 }
 
 /// generated route for
@@ -135,6 +213,43 @@ class ProductRouteArgs {
   @override
   String toString() {
     return 'ProductRouteArgs{product: $product, key: $key}';
+  }
+}
+
+/// generated route for
+/// [ReviewScreen]
+class ReviewRoute extends PageRouteInfo<ReviewRouteArgs> {
+  ReviewRoute({
+    required int shoeId,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ReviewRoute.name,
+          args: ReviewRouteArgs(
+            shoeId: shoeId,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ReviewRoute';
+
+  static const PageInfo<ReviewRouteArgs> page = PageInfo<ReviewRouteArgs>(name);
+}
+
+class ReviewRouteArgs {
+  const ReviewRouteArgs({
+    required this.shoeId,
+    this.key,
+  });
+
+  final int shoeId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'ReviewRouteArgs{shoeId: $shoeId, key: $key}';
   }
 }
 

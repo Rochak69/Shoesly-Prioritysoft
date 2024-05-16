@@ -31,7 +31,7 @@ class SizeOption extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           shape: BoxShape.circle,
-          border: Border.all(color: AppColors.textGrey)),
+          border: Border.all(color: AppColors.textGrey),),
       child: const CircleAvatar(
         backgroundColor: AppColors.transparent,
         child: Text('39'),

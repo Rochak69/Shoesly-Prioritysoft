@@ -33,16 +33,14 @@ ThemeData appTheme() => ThemeData(
         headlineLarge: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
         headlineMedium: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
         headlineSmall: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
-
-        //Body Small
         bodySmall: TextStyle(fontSize: 11),
         bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-
-        //Body Medium
         bodyMedium: TextStyle(fontSize: 12),
-
-        //Body Large
-        // bodyLarge: GoogleFonts.aBeeZee(
-        //     fontSize: 19, fontWeight: FontWeight.w800, color: Colors.white),
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: AppColors.black,
+        foregroundColor: AppColors.colorWhite,
+        extendedPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
       ),
     );

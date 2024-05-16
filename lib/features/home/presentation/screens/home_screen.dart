@@ -1,9 +1,5 @@
-import 'dart:convert';
-
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project_init/constants/app_colors.dart';
 import 'package:project_init/constants/app_images.dart';
@@ -35,7 +31,7 @@ class HomeScreen extends StatelessWidget {
                       style: Theme.of(context).textTheme.headlineLarge,
                     ),
                   ),
-                  const CartImage()
+                  const CartImage(),
                 ],
               ),
             ),
@@ -92,13 +88,12 @@ class HomeScreen extends StatelessWidget {
                           const HorizontalSpacing(5),
                           Text(
                             '(${products[index].reviews} Reviews)',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall!
-                                .copyWith(
-                                    fontWeight: FontWeight.w700,
-                                    color: AppColors.textGrey),
-                          )
+                            style:
+                                Theme.of(context).textTheme.bodySmall!.copyWith(
+                                      fontWeight: FontWeight.w700,
+                                      color: AppColors.textGrey,
+                                    ),
+                          ),
                         ],
                       ),
                       Text(
@@ -109,6 +104,24 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          AutoRouter.of(context).push(const FilterRoute());
+        },
+        label: Row(
+          children: [
+            SvgPicture.asset(
+              AppImages.filterSvg,
+              width: 20,
+            ),
+            const HorizontalSpacing(16),
+            const Text(
+              'FILTER',
+              style: TextStyle(fontWeight: FontWeight.w700),
             ),
           ],
         ),

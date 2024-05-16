@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:project_init/constants/app_colors.dart';
 import 'package:project_init/core/route/app_router.dart';
-import 'package:project_init/extensions/string_extension.dart';
 import 'package:project_init/features/common/app_scaffold.dart';
 
 @RoutePage()
@@ -24,7 +23,7 @@ class SplashScreen extends StatelessWidget {
         )
             .animate(
               onComplete: (controller) =>
-                  AutoRouter.of(context).replace(HomeRoute()),
+                  AutoRouter.of(context).replace(const HomeRoute()),
             )
             .slideY(
               begin: 1,

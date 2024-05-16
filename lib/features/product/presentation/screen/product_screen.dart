@@ -1,8 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project_init/constants/app_colors.dart';
 import 'package:project_init/constants/app_images.dart';
 import 'package:project_init/core/route/app_router.dart';
@@ -13,6 +10,7 @@ import 'package:project_init/features/common/cart_widget.dart';
 import 'package:project_init/features/common/model/product_model.dart';
 import 'package:project_init/features/common/review_widget.dart';
 import 'package:project_init/features/common/shoe_container.dart';
+import 'package:project_init/features/common/top_shadow_box_decoration.dart';
 import 'package:project_init/features/product/presentation/screen/widgets/size_options.dart';
 
 @RoutePage()
@@ -79,25 +77,16 @@ class ProductScreen extends StatelessWidget {
                 AppOutlinedButton.white(
                   text: 'See All Review',
                   borderColor: AppColors.buttonBorderColor,
-                  onPressed: () {},
+                  onPressed: () {
+                    AutoRouter.of(context).push(ReviewRoute(shoeId: 1));
+                  },
                 ),
                 const VerticalSpacing(38),
               ],
             ),
           ),
           Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.15), // shadow color
-                  spreadRadius: 2,
-                  blurRadius: 4,
-                  offset:
-                      const Offset(0, -4), // changes position of shadow (x, y)
-                ),
-              ],
-            ),
+            decoration: boxDecorationTopShadow,
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

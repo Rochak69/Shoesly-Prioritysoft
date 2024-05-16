@@ -1,4 +1,4 @@
-import 'package:project_init/core/dio_provider/api_error.dart';
+import 'package:project_init/core/firebase_provider/api_error.dart';
 
 class ApiResponse<T> {
   const ApiResponse({this.message, this.data});
