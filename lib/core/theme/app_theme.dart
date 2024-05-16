@@ -40,7 +40,8 @@ ThemeData appTheme() => ThemeData(
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: AppColors.black,
         foregroundColor: AppColors.colorWhite,
-        extendedPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        extendedPadding:
+            const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
       ),
     );
