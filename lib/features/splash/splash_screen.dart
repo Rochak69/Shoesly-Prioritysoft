@@ -12,28 +12,24 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
-      body: ColoredBox(
-        color: Colors.lightGreen.shade50,
-        child: const Center(
-          child: Icon(
-            Icons.flutter_dash_outlined,
-            size: 180,
-            color: AppColors.primaryDark,
-          ),
-        )
-            .animate(
-              onComplete: (controller) =>
-                  AutoRouter.of(context).replace(const HomeRoute()),
-            )
-            .slideY(
-              begin: 1,
-              duration: const Duration(milliseconds: 800),
-              curve: Curves.decelerate,
-              delay: const Duration(milliseconds: 300),
-            )
-            .then()
-            .shakeY(curve: Curves.easeInOutCubicEmphasized),
-      ),
+      body: Center(
+        child: Text(
+          'SHOESLY',
+          style: Theme.of(context).textTheme.headlineLarge,
+        ),
+      )
+          .animate(
+            onComplete: (controller) =>
+                AutoRouter.of(context).replace(const HomeRoute()),
+          )
+          .slideY(
+            begin: 1,
+            duration: const Duration(milliseconds: 800),
+            curve: Curves.decelerate,
+            delay: const Duration(milliseconds: 300),
+          )
+          .then()
+          .shakeY(curve: Curves.easeInOutCubicEmphasized),
     );
   }
 }

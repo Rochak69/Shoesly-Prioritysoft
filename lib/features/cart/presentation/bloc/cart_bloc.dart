@@ -32,6 +32,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       ..removeWhere(
         (element) => element.id == event.id,
       );
+
     emit(state.copyWith(products: products));
   }
 }
