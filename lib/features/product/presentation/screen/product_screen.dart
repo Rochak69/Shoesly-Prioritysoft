@@ -1,22 +1,38 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_init/constants/app_colors.dart';
 import 'package:project_init/constants/app_images.dart';
 import 'package:project_init/core/route/app_router.dart';
+import 'package:project_init/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:project_init/features/common/app_outlined_button.dart';
 import 'package:project_init/features/common/app_scaffold.dart';
 import 'package:project_init/features/common/app_spacing.dart';
+import 'package:project_init/features/common/app_state_wrapper.dart';
 import 'package:project_init/features/common/cart_widget.dart';
 import 'package:project_init/features/common/model/product_model.dart';
 import 'package:project_init/features/common/review_widget.dart';
 import 'package:project_init/features/common/shoe_container.dart';
 import 'package:project_init/features/common/top_shadow_box_decoration.dart';
 import 'package:project_init/features/product/presentation/screen/widgets/size_options.dart';
+import 'package:project_init/features/review/presentation/bloc/review_bloc.dart';
 
 @RoutePage()
-class ProductScreen extends StatelessWidget {
+class ProductScreen extends StatefulWidget {
   const ProductScreen({required this.product, super.key});
   final ProductModel product;
+
+  @override
+  State<ProductScreen> createState() => _ProductScreenState();
+}
+
+class _ProductScreenState extends State<ProductScreen> {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<ReviewBloc>(context)
+        .add(ReviewEvent.fetchAllReview(productId: widget.product.id));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +47,7 @@ class ProductScreen extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
               children: [
                 ShoeContainer(
-                  product: product,
+                  product: widget.product,
                   showColorOptions: true,
                   padding: const EdgeInsets.fromLTRB(31, 69, 31, 67),
                   height: 345,
@@ -39,11 +55,11 @@ class ProductScreen extends StatelessWidget {
                 ),
                 const VerticalSpacing(30),
                 Text(
-                  'Jordan 1 Retro High Tie Dye',
+                  widget.product.name,
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
-                const Row(
-                  children: [Text('(1045 Reviews)')],
+                Row(
+                  children: [Text('(${widget.product.reviews} Reviews)')],
                 ),
                 const VerticalSpacing(30),
                 Text(
@@ -51,34 +67,57 @@ class ProductScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 const VerticalSpacing(10),
-                const SizeOptions(),
+                SizeOptions(
+                  sizes: widget.product.sizes,
+                ),
                 const VerticalSpacing(30),
                 Text(
                   'Description',
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 const VerticalSpacing(10),
-                const Text(
-                  "Engineered to crush any movement-based workout, these On sneakers enhance the label's original Cloud sneaker with cutting edge technologies for a pair.",
-                  style: TextStyle(fontSize: 14, color: AppColors.bodyTextGrey),
-                ),
-                const VerticalSpacing(30),
                 Text(
-                  'Review (1045)',
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  widget.product.description,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: AppColors.bodyTextGrey,
+                  ),
                 ),
-                const VerticalSpacing(10),
-                const ReviewWidget(),
                 const VerticalSpacing(30),
-                const ReviewWidget(),
-                const VerticalSpacing(30),
-                const ReviewWidget(),
-                const VerticalSpacing(30),
+                BlocBuilder<ReviewBloc, ReviewState>(
+                  builder: (context, state) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Review (${widget.product.reviews})',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        const VerticalSpacing(10),
+                        AppStateWrapper(
+                          theStates: state.theStates,
+                          successChild: ListView.separated(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) =>
+                                ReviewWidget(review: state.reviews[index]),
+                            separatorBuilder: (context, index) =>
+                                const VerticalSpacing(30),
+                            itemCount: state.reviews.length > 3
+                                ? 3
+                                : state.reviews.length,
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                ),
                 AppOutlinedButton.white(
                   text: 'See All Review',
                   borderColor: AppColors.buttonBorderColor,
                   onPressed: () {
-                    AutoRouter.of(context).push(ReviewRoute(shoeId: 1));
+                    AutoRouter.of(context)
+                        .push(ReviewRoute(shoeId: widget.product.id));
                   },
                 ),
                 const VerticalSpacing(38),
@@ -102,13 +141,15 @@ class ProductScreen extends StatelessWidget {
                           .copyWith(color: AppColors.textGrey),
                     ),
                     Text(
-                      r'$235.00',
+                      '\$${widget.product.price}',
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                   ],
                 ),
                 AppOutlinedButton(
                   onPressed: () {
+                    BlocProvider.of<CartBloc>(context)
+                        .add(CartEvent.addToCart(product: widget.product));
                     showModalBottomSheet(
                       context: context,
                       builder: (context) => Container(

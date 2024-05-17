@@ -23,9 +23,13 @@ mixin _$ProductModel {
   String get image => throw _privateConstructorUsedError;
   String get logo => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get brand => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  List<int> get sizes => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
   int get reviews => throw _privateConstructorUsedError;
   double get rating => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,9 +47,13 @@ abstract class $ProductModelCopyWith<$Res> {
       {String image,
       String logo,
       String name,
+      String brand,
+      String description,
+      List<int> sizes,
       double price,
       int reviews,
-      double rating});
+      double rating,
+      int id});
 }
 
 /// @nodoc
@@ -64,9 +72,13 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? image = null,
     Object? logo = null,
     Object? name = null,
+    Object? brand = null,
+    Object? description = null,
+    Object? sizes = null,
     Object? price = null,
     Object? reviews = null,
     Object? rating = null,
+    Object? id = null,
   }) {
     return _then(_value.copyWith(
       image: null == image
@@ -81,6 +93,18 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      brand: null == brand
+          ? _value.brand
+          : brand // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      sizes: null == sizes
+          ? _value.sizes
+          : sizes // ignore: cast_nullable_to_non_nullable
+              as List<int>,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -93,6 +117,10 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -109,9 +137,13 @@ abstract class _$$ProductModelImplCopyWith<$Res>
       {String image,
       String logo,
       String name,
+      String brand,
+      String description,
+      List<int> sizes,
       double price,
       int reviews,
-      double rating});
+      double rating,
+      int id});
 }
 
 /// @nodoc
@@ -128,9 +160,13 @@ class __$$ProductModelImplCopyWithImpl<$Res>
     Object? image = null,
     Object? logo = null,
     Object? name = null,
+    Object? brand = null,
+    Object? description = null,
+    Object? sizes = null,
     Object? price = null,
     Object? reviews = null,
     Object? rating = null,
+    Object? id = null,
   }) {
     return _then(_$ProductModelImpl(
       image: null == image
@@ -145,6 +181,18 @@ class __$$ProductModelImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      brand: null == brand
+          ? _value.brand
+          : brand // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      sizes: null == sizes
+          ? _value._sizes
+          : sizes // ignore: cast_nullable_to_non_nullable
+              as List<int>,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -157,6 +205,10 @@ class __$$ProductModelImplCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -168,9 +220,14 @@ class _$ProductModelImpl implements _ProductModel {
       {required this.image,
       required this.logo,
       required this.name,
+      required this.brand,
+      required this.description,
+      required final List<int> sizes,
       required this.price,
       required this.reviews,
-      required this.rating});
+      required this.rating,
+      required this.id})
+      : _sizes = sizes;
 
   factory _$ProductModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductModelImplFromJson(json);
@@ -182,15 +239,29 @@ class _$ProductModelImpl implements _ProductModel {
   @override
   final String name;
   @override
+  final String brand;
+  @override
+  final String description;
+  final List<int> _sizes;
+  @override
+  List<int> get sizes {
+    if (_sizes is EqualUnmodifiableListView) return _sizes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_sizes);
+  }
+
+  @override
   final double price;
   @override
   final int reviews;
   @override
   final double rating;
+  @override
+  final int id;
 
   @override
   String toString() {
-    return 'ProductModel(image: $image, logo: $logo, name: $name, price: $price, reviews: $reviews, rating: $rating)';
+    return 'ProductModel(image: $image, logo: $logo, name: $name, brand: $brand, description: $description, sizes: $sizes, price: $price, reviews: $reviews, rating: $rating, id: $id)';
   }
 
   @override
@@ -201,15 +272,30 @@ class _$ProductModelImpl implements _ProductModel {
             (identical(other.image, image) || other.image == image) &&
             (identical(other.logo, logo) || other.logo == logo) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.brand, brand) || other.brand == brand) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            const DeepCollectionEquality().equals(other._sizes, _sizes) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.reviews, reviews) || other.reviews == reviews) &&
-            (identical(other.rating, rating) || other.rating == rating));
+            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, image, logo, name, price, reviews, rating);
+  int get hashCode => Object.hash(
+      runtimeType,
+      image,
+      logo,
+      name,
+      brand,
+      description,
+      const DeepCollectionEquality().hash(_sizes),
+      price,
+      reviews,
+      rating,
+      id);
 
   @JsonKey(ignore: true)
   @override
@@ -230,9 +316,13 @@ abstract class _ProductModel implements ProductModel {
       {required final String image,
       required final String logo,
       required final String name,
+      required final String brand,
+      required final String description,
+      required final List<int> sizes,
       required final double price,
       required final int reviews,
-      required final double rating}) = _$ProductModelImpl;
+      required final double rating,
+      required final int id}) = _$ProductModelImpl;
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
       _$ProductModelImpl.fromJson;
@@ -244,11 +334,19 @@ abstract class _ProductModel implements ProductModel {
   @override
   String get name;
   @override
+  String get brand;
+  @override
+  String get description;
+  @override
+  List<int> get sizes;
+  @override
   double get price;
   @override
   int get reviews;
   @override
   double get rating;
+  @override
+  int get id;
   @override
   @JsonKey(ignore: true)
   _$$ProductModelImplCopyWith<_$ProductModelImpl> get copyWith =>

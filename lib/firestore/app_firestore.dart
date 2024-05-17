@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class AppFirestore {
   static AppFirestore instance = AppFirestore();
   static late FirebaseFirestore firestore;
@@ -7,8 +9,8 @@ class AppFirestore {
     firestore = FirebaseFirestore.instance;
   }
 
-  static DocumentReference<Map<String, dynamic>> products(String id) {
-    return firestore.collection('products').doc(id);
+  static DocumentReference<Map<String, dynamic>> products() {
+    return firestore.collection('products').doc('allProducts');
   }
 
   static DocumentReference<Map<String, dynamic>> reviewsDocument(

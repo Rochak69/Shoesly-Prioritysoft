@@ -11,15 +11,17 @@ class AppLoadingWidget extends StatelessWidget {
   const AppLoadingWidget.small({
     super.key,
     this.size = 28,
-    this.color = AppColors.primaryDark,
+    this.color = AppColors.black,
   });
   final double size;
   final Color color;
   @override
   Widget build(BuildContext context) {
-    return LoadingAnimationWidget.halfTriangleDot(
-      color: color,
-      size: size,
+    return Center(
+      child: LoadingAnimationWidget.halfTriangleDot(
+        color: color,
+        size: size,
+      ),
     );
   }
 }
