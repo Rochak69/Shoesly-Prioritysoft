@@ -9,6 +9,7 @@ import 'package:project_init/features/common/app_spacing.dart';
 import 'package:project_init/features/common/cart_widget.dart';
 import 'package:project_init/features/common/model/product_model.dart';
 import 'package:project_init/features/common/shoe_container.dart';
+import 'package:project_init/firestore/app_firestore.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -109,8 +110,16 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          AutoRouter.of(context).push(const FilterRoute());
+        onPressed: () async {
+          // AutoRouter.of(context).push(const FilterRoute());
+          final productData = products
+              .map(
+                (e) => e.toJson(),
+              )
+              .toList();
+          final a = await AppFirestore.productsCollection().get();
+          final b = a;
+          print(a.docs.first.data());
         },
         label: Row(
           children: [

@@ -12,6 +12,7 @@ import 'package:project_init/core/route/app_router.dart';
 import 'package:project_init/core/theme/app_theme.dart';
 import 'package:project_init/features/login/presentation/bloc/login_bloc.dart';
 import 'package:project_init/firebase_options.dart';
+import 'package:project_init/firestore/app_firestore.dart';
 
 class AppEntryPoint {
   AppEntryPoint(AppConfiguration buildVariant) {
@@ -27,6 +28,7 @@ class AppEntryPoint {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
+    AppFirestore.init();
     await configureDependencies();
 
     if (Platform.isAndroid) {
