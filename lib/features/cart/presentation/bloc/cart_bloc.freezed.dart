@@ -19,19 +19,19 @@ mixin _$CartEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ProductModel product) addToCart,
-    required TResult Function(int id) removeFromCart,
+    required TResult Function(int id, bool deleteAll) removeFromCart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(ProductModel product)? addToCart,
-    TResult? Function(int id)? removeFromCart,
+    TResult? Function(int id, bool deleteAll)? removeFromCart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ProductModel product)? addToCart,
-    TResult Function(int id)? removeFromCart,
+    TResult Function(int id, bool deleteAll)? removeFromCart,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -148,7 +148,7 @@ class _$AddToCartImpl implements _AddToCart {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ProductModel product) addToCart,
-    required TResult Function(int id) removeFromCart,
+    required TResult Function(int id, bool deleteAll) removeFromCart,
   }) {
     return addToCart(product);
   }
@@ -157,7 +157,7 @@ class _$AddToCartImpl implements _AddToCart {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(ProductModel product)? addToCart,
-    TResult? Function(int id)? removeFromCart,
+    TResult? Function(int id, bool deleteAll)? removeFromCart,
   }) {
     return addToCart?.call(product);
   }
@@ -166,7 +166,7 @@ class _$AddToCartImpl implements _AddToCart {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ProductModel product)? addToCart,
-    TResult Function(int id)? removeFromCart,
+    TResult Function(int id, bool deleteAll)? removeFromCart,
     required TResult orElse(),
   }) {
     if (addToCart != null) {
@@ -223,7 +223,7 @@ abstract class _$$RemoveFromCartImplCopyWith<$Res> {
           $Res Function(_$RemoveFromCartImpl) then) =
       __$$RemoveFromCartImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int id});
+  $Res call({int id, bool deleteAll});
 }
 
 /// @nodoc
@@ -238,12 +238,17 @@ class __$$RemoveFromCartImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? deleteAll = null,
   }) {
     return _then(_$RemoveFromCartImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      deleteAll: null == deleteAll
+          ? _value.deleteAll
+          : deleteAll // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -251,14 +256,17 @@ class __$$RemoveFromCartImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RemoveFromCartImpl implements _RemoveFromCart {
-  const _$RemoveFromCartImpl({required this.id});
+  const _$RemoveFromCartImpl({required this.id, this.deleteAll = false});
 
   @override
   final int id;
+  @override
+  @JsonKey()
+  final bool deleteAll;
 
   @override
   String toString() {
-    return 'CartEvent.removeFromCart(id: $id)';
+    return 'CartEvent.removeFromCart(id: $id, deleteAll: $deleteAll)';
   }
 
   @override
@@ -266,11 +274,13 @@ class _$RemoveFromCartImpl implements _RemoveFromCart {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RemoveFromCartImpl &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.deleteAll, deleteAll) ||
+                other.deleteAll == deleteAll));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id);
+  int get hashCode => Object.hash(runtimeType, id, deleteAll);
 
   @JsonKey(ignore: true)
   @override
@@ -283,29 +293,29 @@ class _$RemoveFromCartImpl implements _RemoveFromCart {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ProductModel product) addToCart,
-    required TResult Function(int id) removeFromCart,
+    required TResult Function(int id, bool deleteAll) removeFromCart,
   }) {
-    return removeFromCart(id);
+    return removeFromCart(id, deleteAll);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(ProductModel product)? addToCart,
-    TResult? Function(int id)? removeFromCart,
+    TResult? Function(int id, bool deleteAll)? removeFromCart,
   }) {
-    return removeFromCart?.call(id);
+    return removeFromCart?.call(id, deleteAll);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ProductModel product)? addToCart,
-    TResult Function(int id)? removeFromCart,
+    TResult Function(int id, bool deleteAll)? removeFromCart,
     required TResult orElse(),
   }) {
     if (removeFromCart != null) {
-      return removeFromCart(id);
+      return removeFromCart(id, deleteAll);
     }
     return orElse();
   }
@@ -343,9 +353,11 @@ class _$RemoveFromCartImpl implements _RemoveFromCart {
 }
 
 abstract class _RemoveFromCart implements CartEvent {
-  const factory _RemoveFromCart({required final int id}) = _$RemoveFromCartImpl;
+  const factory _RemoveFromCart({required final int id, final bool deleteAll}) =
+      _$RemoveFromCartImpl;
 
   int get id;
+  bool get deleteAll;
   @JsonKey(ignore: true)
   _$$RemoveFromCartImplCopyWith<_$RemoveFromCartImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -354,7 +366,7 @@ abstract class _RemoveFromCart implements CartEvent {
 /// @nodoc
 mixin _$CartState {
   TheStates get theStates => throw _privateConstructorUsedError;
-  List<ProductModel> get products => throw _privateConstructorUsedError;
+  List<CartModel> get cartItems => throw _privateConstructorUsedError;
   AppError get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -367,7 +379,7 @@ abstract class $CartStateCopyWith<$Res> {
   factory $CartStateCopyWith(CartState value, $Res Function(CartState) then) =
       _$CartStateCopyWithImpl<$Res, CartState>;
   @useResult
-  $Res call({TheStates theStates, List<ProductModel> products, AppError error});
+  $Res call({TheStates theStates, List<CartModel> cartItems, AppError error});
 }
 
 /// @nodoc
@@ -384,7 +396,7 @@ class _$CartStateCopyWithImpl<$Res, $Val extends CartState>
   @override
   $Res call({
     Object? theStates = null,
-    Object? products = null,
+    Object? cartItems = null,
     Object? error = null,
   }) {
     return _then(_value.copyWith(
@@ -392,10 +404,10 @@ class _$CartStateCopyWithImpl<$Res, $Val extends CartState>
           ? _value.theStates
           : theStates // ignore: cast_nullable_to_non_nullable
               as TheStates,
-      products: null == products
-          ? _value.products
-          : products // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
+      cartItems: null == cartItems
+          ? _value.cartItems
+          : cartItems // ignore: cast_nullable_to_non_nullable
+              as List<CartModel>,
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -412,7 +424,7 @@ abstract class _$$CartStateImplCopyWith<$Res>
       __$$CartStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({TheStates theStates, List<ProductModel> products, AppError error});
+  $Res call({TheStates theStates, List<CartModel> cartItems, AppError error});
 }
 
 /// @nodoc
@@ -427,7 +439,7 @@ class __$$CartStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? theStates = null,
-    Object? products = null,
+    Object? cartItems = null,
     Object? error = null,
   }) {
     return _then(_$CartStateImpl(
@@ -435,10 +447,10 @@ class __$$CartStateImplCopyWithImpl<$Res>
           ? _value.theStates
           : theStates // ignore: cast_nullable_to_non_nullable
               as TheStates,
-      products: null == products
-          ? _value._products
-          : products // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
+      cartItems: null == cartItems
+          ? _value._cartItems
+          : cartItems // ignore: cast_nullable_to_non_nullable
+              as List<CartModel>,
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -452,20 +464,20 @@ class __$$CartStateImplCopyWithImpl<$Res>
 class _$CartStateImpl implements _CartState {
   const _$CartStateImpl(
       {this.theStates = TheStates.initial,
-      final List<ProductModel> products = const [],
+      final List<CartModel> cartItems = const [],
       this.error = const InternalAppError()})
-      : _products = products;
+      : _cartItems = cartItems;
 
   @override
   @JsonKey()
   final TheStates theStates;
-  final List<ProductModel> _products;
+  final List<CartModel> _cartItems;
   @override
   @JsonKey()
-  List<ProductModel> get products {
-    if (_products is EqualUnmodifiableListView) return _products;
+  List<CartModel> get cartItems {
+    if (_cartItems is EqualUnmodifiableListView) return _cartItems;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_products);
+    return EqualUnmodifiableListView(_cartItems);
   }
 
   @override
@@ -474,7 +486,7 @@ class _$CartStateImpl implements _CartState {
 
   @override
   String toString() {
-    return 'CartState(theStates: $theStates, products: $products, error: $error)';
+    return 'CartState(theStates: $theStates, cartItems: $cartItems, error: $error)';
   }
 
   @override
@@ -484,13 +496,14 @@ class _$CartStateImpl implements _CartState {
             other is _$CartStateImpl &&
             (identical(other.theStates, theStates) ||
                 other.theStates == theStates) &&
-            const DeepCollectionEquality().equals(other._products, _products) &&
+            const DeepCollectionEquality()
+                .equals(other._cartItems, _cartItems) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, theStates,
-      const DeepCollectionEquality().hash(_products), error);
+      const DeepCollectionEquality().hash(_cartItems), error);
 
   @JsonKey(ignore: true)
   @override
@@ -502,13 +515,13 @@ class _$CartStateImpl implements _CartState {
 abstract class _CartState implements CartState {
   const factory _CartState(
       {final TheStates theStates,
-      final List<ProductModel> products,
+      final List<CartModel> cartItems,
       final AppError error}) = _$CartStateImpl;
 
   @override
   TheStates get theStates;
   @override
-  List<ProductModel> get products;
+  List<CartModel> get cartItems;
   @override
   AppError get error;
   @override

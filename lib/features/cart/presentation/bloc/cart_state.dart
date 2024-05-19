@@ -4,7 +4,7 @@ part of 'cart_bloc.dart';
 class CartState with _$CartState {
   const factory CartState({
     @Default(TheStates.initial) TheStates theStates,
-    @Default([]) List<ProductModel> products,
+    @Default([]) List<CartModel> cartItems,
     @Default(InternalAppError()) AppError error,
   }) = _CartState;
 }

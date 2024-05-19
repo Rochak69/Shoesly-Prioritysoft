@@ -6,13 +6,14 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:project_init/constants/app_colors.dart';
 import 'package:project_init/constants/app_images.dart';
+import 'package:project_init/features/cart/data/model/cart_model.dart';
 import 'package:project_init/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:project_init/features/common/app_spacing.dart';
 import 'package:project_init/features/common/model/product_model.dart';
 
 class CartItem extends StatefulWidget {
-  const CartItem({required this.product, super.key});
-  final ProductModel product;
+  const CartItem({required this.item, super.key});
+  final CartModel item;
 
   @override
   State<CartItem> createState() => _CartItemState();
@@ -46,8 +47,10 @@ class _CartItemState extends State<CartItem>
             onTap: () async {
               await controller.close();
               if (context.mounted) {
-                BlocProvider.of<CartBloc>(context)
-                    .add(CartEvent.removeFromCart(id: widget.product.id));
+                BlocProvider.of<CartBloc>(context).add(
+                  CartEvent.removeFromCart(
+                      id: widget.item.product!.id, deleteAll: true),
+                );
               }
             },
             child: Container(
@@ -85,7 +88,7 @@ class _CartItemState extends State<CartItem>
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Image.asset(
-                AppImages.shoePng,
+                widget.item.product!.image,
                 width: 70,
               ),
             ),
@@ -96,11 +99,11 @@ class _CartItemState extends State<CartItem>
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    widget.product.name,
+                    widget.item.product!.name,
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   Text(
-                    widget.product.name,
+                    widget.item.product!.name,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: AppColors.bodyTextGrey,
                         ),
@@ -108,11 +111,39 @@ class _CartItemState extends State<CartItem>
                   Row(
                     children: [
                       Text(
-                        widget.product.price.toString(),
+                        widget.item.product!.price.toString(),
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
                       const Spacer(),
-                      const Icon(Icons.add),
+                      InkWell(
+                        onTap: () {
+                          if (widget.item.count < 2) {
+                            return;
+                          }
+                          BlocProvider.of<CartBloc>(context).add(
+                            CartEvent.removeFromCart(
+                                id: widget.item.product!.id),
+                          );
+                        },
+                        child: SvgPicture.asset(
+                          AppImages.minusCircle,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Text(
+                          widget.item.count.toString(),
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          BlocProvider.of<CartBloc>(context).add(
+                            CartEvent.addToCart(product: widget.item.product!),
+                          );
+                        },
+                        child: SvgPicture.asset(AppImages.addCircle),
+                      ),
                     ],
                   ),
                 ],

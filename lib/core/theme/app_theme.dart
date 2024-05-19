@@ -27,7 +27,6 @@ ThemeData appTheme() => ThemeData(
       scaffoldBackgroundColor: AppColors.colorWhite,
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.white,
-        foregroundColor: AppColors.primaryDark,
       ),
       textTheme: const TextTheme(
         headlineLarge: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),

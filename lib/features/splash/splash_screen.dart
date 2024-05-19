@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:project_init/constants/app_colors.dart';
 import 'package:project_init/core/route/app_router.dart';
 import 'package:project_init/features/common/app_scaffold.dart';
 

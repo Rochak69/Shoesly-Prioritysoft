@@ -25,7 +25,7 @@ class CartScreen extends StatelessWidget {
           return Column(
             children: [
               Expanded(
-                child: state.products.isEmpty
+                child: state.cartItems.isEmpty
                     ? Center(
                         child: Text(
                           'No items in cart',
@@ -34,11 +34,11 @@ class CartScreen extends StatelessWidget {
                       )
                     : ListView.separated(
                         padding: const EdgeInsets.symmetric(vertical: 30),
-                        itemCount: state.products.length,
+                        itemCount: state.cartItems.length,
                         separatorBuilder: (context, index) =>
                             const VerticalSpacing(30),
                         itemBuilder: (context, index) => CartItem(
-                          product: state.products[index],
+                          item: state.cartItems[index],
                         ),
                       ),
               ),
@@ -64,13 +64,15 @@ class CartScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    AppOutlinedButton(
-                      onPressed: () {
-                        AutoRouter.of(context).push(
-                            OrderSummaryRoute(order: OrderSummaryModel()),);
-                      },
-                      text: 'Check out',
-                    ),
+                    if (state.cartItems.isNotEmpty)
+                      AppOutlinedButton(
+                        onPressed: () {
+                          AutoRouter.of(context).push(
+                            OrderSummaryRoute(order: OrderSummaryModel()),
+                          );
+                        },
+                        text: 'Check out',
+                      ),
                   ],
                 ),
               ),
@@ -84,8 +86,8 @@ class CartScreen extends StatelessWidget {
   String _calculateTotal(CartState state) {
     // ignore: omit_local_variable_types
     double total = 0;
-    for (var i = 0; i < state.products.length; i++) {
-      total = total + state.products[i].price;
+    for (var i = 0; i < state.cartItems.length; i++) {
+      total = total + state.cartItems.first.product!.price;
     }
 
     return total.toString();

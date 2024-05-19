@@ -33,11 +33,12 @@ class ShoeContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (!showColorOptions)
-            Padding(
+            Container(
               padding: const EdgeInsets.only(bottom: 4),
               child: Image.asset(
                 product.logo,
                 width: 24,
+                height: 24,
               ),
             ),
           Expanded(

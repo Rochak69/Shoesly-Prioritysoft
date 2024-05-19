@@ -6,8 +6,10 @@ import 'package:project_init/features/common/app_outlined_button.dart';
 import 'package:project_init/features/common/app_scaffold.dart';
 import 'package:project_init/features/common/app_spacing.dart';
 import 'package:project_init/features/common/custom_app_bar.dart';
+import 'package:project_init/features/common/model/product_model.dart';
 import 'package:project_init/features/common/top_shadow_box_decoration.dart';
 import 'package:project_init/features/filter/presentation/widgets/color_selection_widget.dart';
+import 'package:project_init/features/filter/presentation/widgets/range_selector.dart';
 import 'package:project_init/features/filter/presentation/widgets/selectable_container.dart';
 
 @RoutePage()
@@ -41,13 +43,17 @@ class FilterScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 11),
                       child: Column(
                         children: [
-                          const CircleAvatar(
+                          CircleAvatar(
                             backgroundColor: AppColors.backgroundGrey,
                             radius: 25,
+                            child: Image.asset(
+                              brands[index].logo,
+                              width: 24,
+                            ),
                           ),
                           const VerticalSpacing(10),
                           Text(
-                            'NIKE',
+                            brands[index].title,
                             style: Theme.of(context).textTheme.headlineSmall,
                           ),
                           Text(
@@ -62,7 +68,7 @@ class FilterScreen extends StatelessWidget {
                     ),
                     separatorBuilder: (context, index) =>
                         const HorizontalSpacing(10),
-                    itemCount: 10,
+                    itemCount: brands.length,
                   ),
                 ),
                 const VerticalSpacing(30),
@@ -76,11 +82,7 @@ class FilterScreen extends StatelessWidget {
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       const VerticalSpacing(20),
-                      Container(
-                        color: AppColors.backgroundGrey,
-                        width: double.infinity,
-                        height: 112,
-                      ),
+                      const RangeSelector(),
                       const VerticalSpacing(30),
                       Text(
                         'Sort By',
@@ -163,7 +165,7 @@ class FilterScreen extends StatelessWidget {
                   child: AppOutlinedButton(
                     text: 'APPLY',
                     onPressed: () {
-                      AutoRouter.of(context).push(const CartRoute());
+                      Navigator.pop(context);
                     },
                   ),
                 ),

@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:project_init/core/firebase_provider/api_error.dart';
 import 'package:project_init/enum/the_states.dart';
+import 'package:project_init/features/cart/data/model/cart_model.dart';
 import 'package:project_init/features/common/model/product_model.dart';
 
 part 'cart_event.dart';
@@ -19,20 +20,51 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   }
 
   FutureOr<void> _addToCart(_AddToCart event, Emitter<CartState> emit) {
-    final products = List<ProductModel>.from(state.products)
-      ..add(event.product);
-    emit(state.copyWith(products: products));
+    var cartItems = List<CartModel>.from(state.cartItems);
+    var isExistingItem = false;
+
+    cartItems = cartItems.map(
+      (e) {
+        if (e.product?.id == event.product.id) {
+          isExistingItem = true;
+          return e.copyWith(count: e.count + 1);
+        }
+        return e;
+      },
+    ).toList();
+    if (!isExistingItem) {
+      cartItems.add(CartModel(product: event.product));
+    }
+    emit(state.copyWith(cartItems: cartItems));
   }
 
   FutureOr<void> _removeFromCart(
     _RemoveFromCart event,
     Emitter<CartState> emit,
   ) {
-    final products = List<ProductModel>.from(state.products)
-      ..removeWhere(
-        (element) => element.id == event.id,
+    var cartItems = List<CartModel>.from(state.cartItems);
+    var isExistingItem = false;
+    if (event.deleteAll) {
+      cartItems.removeWhere(
+        (element) => element.product!.id == element.product!.id,
       );
+    } else {
+      cartItems = cartItems.map(
+        (e) {
+          if (e.product?.id == event.id) {
+            isExistingItem = true;
+            return e.copyWith(count: e.count - 1);
+          }
+          return e;
+        },
+      ).toList();
+      if (!isExistingItem) {
+        cartItems.removeWhere(
+          (element) => element.product?.id == event.id,
+        );
+      }
+    }
 
-    emit(state.copyWith(products: products));
+    emit(state.copyWith(cartItems: cartItems));
   }
 }

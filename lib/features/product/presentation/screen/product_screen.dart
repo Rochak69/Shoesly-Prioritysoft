@@ -197,6 +197,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                   child: AppOutlinedButton(
                                     text: 'To Cart',
                                     onPressed: () {
+                                      Navigator.pop(context);
                                       AutoRouter.of(context)
                                           .push(const CartRoute());
                                     },

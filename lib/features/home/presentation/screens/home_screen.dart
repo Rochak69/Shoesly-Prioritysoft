@@ -25,6 +25,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+    brands.map(
+      (e) {
+        AssetImage(e.logo);
+      },
+    );
+
     BlocProvider.of<HomeBloc>(context).add(const HomeEvent.getAllproducts());
   }
 
@@ -62,11 +68,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemBuilder: (context, index) => InkWell(
                       onTap: () => BlocProvider.of<HomeBloc>(context).add(
                         HomeEvent.getAllproducts(
-                          selectedbrand: brands[index],
+                          selectedbrand: brands[index].title,
                         ),
                       ),
                       child: Text(
-                        brands[index],
+                        brands[index].title,
                         style: Theme.of(context)
                             .textTheme
                             .headlineMedium!
@@ -163,11 +169,11 @@ class _HomeScreenState extends State<HomeScreen> {
         onPressed: () async {
           AutoRouter.of(context).push(const FilterRoute());
           // TODO(Rochak): remove
-          // final data = reviewStatic.map(
+          // final data = productsStatic.map(
           //   (e) => e.toJson(),
           // );
           // for (int i = 0; i < 20; i++) {
-          //   AppFirestore.reviewsDocument(i.toString()).set({'data': data});
+          // AppFirestore.products().set({"data": data});
           // }
         },
         label: Row(
