@@ -40,11 +40,11 @@ _\*Shoesly works on iOS and Android._
 - Not 100% to data should be dynamic given that this is a test and it's intention is just see our implementation of backend services and code architecture.
 - Asset path for shoe and brand images are stored in firebase.
 
-## Challenges faced and how I overcame it
+# Challenges faced and how I overcame it
 
-# Populating shoes and reviews data in firestore.
+## Populating shoes and reviews data in firestore.
 - All the shoes data and reviews are dynamic and contains meaningful names, price, reviews etc. Populating so many reviews for each shoes can be a time consuming
-# Solution
+## Solution
 - Used ChatGPT to generate dummy data to store in database.
 
 ## Additional feature 
