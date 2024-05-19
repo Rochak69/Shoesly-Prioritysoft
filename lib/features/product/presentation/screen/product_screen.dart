@@ -10,10 +10,10 @@ import 'package:project_init/features/common/app_scaffold.dart';
 import 'package:project_init/features/common/app_spacing.dart';
 import 'package:project_init/features/common/app_state_wrapper.dart';
 import 'package:project_init/features/common/cart_widget.dart';
-import 'package:project_init/features/product/data/model/product_model.dart';
 import 'package:project_init/features/common/review_widget.dart';
 import 'package:project_init/features/common/shoe_container.dart';
 import 'package:project_init/features/common/top_shadow_box_decoration.dart';
+import 'package:project_init/features/product/data/model/product_model.dart';
 import 'package:project_init/features/product/presentation/screen/widgets/size_options.dart';
 import 'package:project_init/features/review/presentation/bloc/review_bloc.dart';
 

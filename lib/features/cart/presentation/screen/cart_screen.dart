@@ -67,7 +67,7 @@ class CartScreen extends StatelessWidget {
                       AppOutlinedButton(
                         onPressed: () {
                           AutoRouter.of(context).push(
-                            OrderSummaryRoute(),
+                            const OrderSummaryRoute(),
                           );
                         },
                         text: 'Check out',

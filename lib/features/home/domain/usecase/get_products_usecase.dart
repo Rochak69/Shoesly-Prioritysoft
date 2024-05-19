@@ -3,8 +3,8 @@ import 'package:injectable/injectable.dart';
 import 'package:project_init/core/firebase_provider/api_error.dart';
 import 'package:project_init/core/firebase_provider/api_response.dart';
 import 'package:project_init/core/usecase/usecase.dart';
-import 'package:project_init/features/product/data/model/product_model.dart';
 import 'package:project_init/features/home/domain/repository/home_repository.dart';
+import 'package:project_init/features/product/data/model/product_model.dart';
 
 class GetProductsParam {
   GetProductsParam({

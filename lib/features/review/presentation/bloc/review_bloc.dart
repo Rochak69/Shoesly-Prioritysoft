@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'package:project_init/core/firebase_provider/api_error.dart';
 import 'package:project_init/enum/the_states.dart';
 import 'package:project_init/features/review/data/model/review_model.dart';
-import 'package:project_init/firestore/app_firestore.dart';
+import 'package:project_init/features/review/domain/usecase/get_reviews_usecase.dart';
 
 part 'review_event.dart';
 part 'review_state.dart';
@@ -13,9 +13,10 @@ part 'review_bloc.freezed.dart';
 
 @injectable
 class ReviewBloc extends Bloc<ReviewEvent, ReviewState> {
-  ReviewBloc() : super(const _ReviewState()) {
+  ReviewBloc(this._getReviewsUsecase) : super(const _ReviewState()) {
     on<_FetchAllReviews>(_fetchAllReviews);
   }
+  final GetReviewsUsecase _getReviewsUsecase;
 
   FutureOr<void> _fetchAllReviews(
     _FetchAllReviews event,
@@ -23,22 +24,28 @@ class ReviewBloc extends Bloc<ReviewEvent, ReviewState> {
   ) async {
     emit(
       state.copyWith(
-          theStates: TheStates.loading, selectedFilter: event.selectedFilter,),
+        theStates: TheStates.loading,
+        selectedFilter: event.selectedFilter,
+      ),
     );
-    final result =
-        await AppFirestore.reviewsDocument(event.productId.toString()).get();
-    final data = result.data()!['data'];
-    final reviews = (data as List<dynamic>)
-        .map(
-          (e) => ReviewModel.fromJson(e),
-        )
-        .toList();
-    if (event.selectedFilter != 'All') {
-      final valueInString = event.selectedFilter[0];
-      final selectedRating = int.parse(valueInString);
-      reviews
-          .removeWhere((element) => element.rating.toInt() != selectedRating);
-    }
-    emit(state.copyWith(theStates: TheStates.success, reviews: reviews));
+    final result = await _getReviewsUsecase.call(
+      GetReviewsParam(
+        productId: event.productId,
+        selectedFilter: event.selectedFilter,
+      ),
+    );
+    result.fold(
+      (l) {
+        emit(state.copyWith(theStates: TheStates.error));
+      },
+      (r) {
+        emit(
+          state.copyWith(
+            theStates: TheStates.success,
+            reviews: r.data ?? [],
+          ),
+        );
+      },
+    );
   }
 }

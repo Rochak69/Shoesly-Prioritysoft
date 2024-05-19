@@ -13,17 +13,22 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i4;
 
-import '../../features/cart/presentation/bloc/cart_bloc.dart' as _i8;
-import '../../features/home/data/repository/home_repository_impl.dart' as _i12;
+import '../../features/cart/presentation/bloc/cart_bloc.dart' as _i7;
+import '../../features/home/data/repository/home_repository_impl.dart' as _i16;
 import '../../features/home/data/source/home_remote_source.dart' as _i6;
-import '../../features/home/domain/repository/home_repository.dart' as _i11;
-import '../../features/home/domain/usecase/get_products_usecase.dart' as _i13;
-import '../../features/home/presentation/bloc/home_bloc.dart' as _i14;
-import '../../features/review/presentation/bloc/review_bloc.dart' as _i7;
+import '../../features/home/domain/repository/home_repository.dart' as _i15;
+import '../../features/home/domain/usecase/get_products_usecase.dart' as _i17;
+import '../../features/home/presentation/bloc/home_bloc.dart' as _i18;
+import '../../features/review/data/repository/review_repository_impl.dart'
+    as _i11;
+import '../../features/review/data/source/review_remote_source.dart' as _i8;
+import '../../features/review/domain/repository/review_repository.dart' as _i10;
+import '../../features/review/domain/usecase/get_reviews_usecase.dart' as _i13;
+import '../../features/review/presentation/bloc/review_bloc.dart' as _i14;
 import '../../firestore/app_firestore.dart' as _i5;
 import '../config/environment_helper.dart' as _i3;
-import '../preferences/preferences.dart' as _i10;
-import 'dependency_injection.dart' as _i15;
+import '../preferences/preferences.dart' as _i12;
+import 'dependency_injection.dart' as _i19;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -44,19 +49,25 @@ extension GetItInjectableX on _i1.GetIt {
     );
     gh.factory<_i5.AppFirestore>(() => _i5.AppFirestore());
     gh.factory<_i6.HomeRemoteSource>(() => _i6.HomeRemoteSource());
-    gh.factory<_i7.ReviewBloc>(() => _i7.ReviewBloc());
-    gh.factory<_i8.CartBloc>(() => _i8.CartBloc());
+    gh.factory<_i7.CartBloc>(() => _i7.CartBloc());
+    gh.factory<_i8.ReviewRemoteSource>(() => _i8.ReviewRemoteSource());
     gh.singleton<_i9.FlutterSecureStorage>(() => registerModule.secureStore);
-    gh.factory<_i10.Preferences>(
-        () => _i10.Preferences(gh<_i9.FlutterSecureStorage>()));
-    gh.lazySingleton<_i11.HomeRepository>(
-        () => _i12.HomeRepositoryImpl(gh<_i6.HomeRemoteSource>()));
-    gh.lazySingleton<_i13.GetProductsUsecase>(
-        () => _i13.GetProductsUsecase(gh<_i11.HomeRepository>()));
-    gh.lazySingleton<_i14.HomeBloc>(
-        () => _i14.HomeBloc(gh<_i13.GetProductsUsecase>()));
+    gh.lazySingleton<_i10.ReviewRepository>(
+        () => _i11.ReviewRepositoryImpl(gh<_i8.ReviewRemoteSource>()));
+    gh.factory<_i12.Preferences>(
+        () => _i12.Preferences(gh<_i9.FlutterSecureStorage>()));
+    gh.lazySingleton<_i13.GetReviewsUsecase>(
+        () => _i13.GetReviewsUsecase(gh<_i10.ReviewRepository>()));
+    gh.factory<_i14.ReviewBloc>(
+        () => _i14.ReviewBloc(gh<_i13.GetReviewsUsecase>()));
+    gh.lazySingleton<_i15.HomeRepository>(
+        () => _i16.HomeRepositoryImpl(gh<_i6.HomeRemoteSource>()));
+    gh.lazySingleton<_i17.GetProductsUsecase>(
+        () => _i17.GetProductsUsecase(gh<_i15.HomeRepository>()));
+    gh.lazySingleton<_i18.HomeBloc>(
+        () => _i18.HomeBloc(gh<_i17.GetProductsUsecase>()));
     return this;
   }
 }
 
-class _$RegisterModule extends _i15.RegisterModule {}
+class _$RegisterModule extends _i19.RegisterModule {}

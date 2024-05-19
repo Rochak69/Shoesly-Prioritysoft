@@ -2,11 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:project_init/extensions/string_extension.dart';
 import 'package:project_init/features/cart/presentation/screen/cart_screen.dart';
-import 'package:project_init/features/product/data/model/product_model.dart';
 import 'package:project_init/features/filter/presentation/screens/filter_screen.dart';
 import 'package:project_init/features/home/presentation/screens/home_screen.dart';
-
 import 'package:project_init/features/order_summary/presentation/screens/order_summary_screen.dart';
+import 'package:project_init/features/product/data/model/product_model.dart';
 import 'package:project_init/features/product/presentation/screen/product_screen.dart';
 import 'package:project_init/features/review/presentation/screens/review_screen.dart';
 import 'package:project_init/features/splash/splash_screen.dart';

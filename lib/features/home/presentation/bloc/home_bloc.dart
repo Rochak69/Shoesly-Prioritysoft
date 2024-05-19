@@ -6,12 +6,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:project_init/core/firebase_provider/api_error.dart';
 import 'package:project_init/enum/the_states.dart';
-import 'package:project_init/features/product/data/model/product_model.dart';
 import 'package:project_init/features/home/domain/usecase/get_products_usecase.dart';
+import 'package:project_init/features/product/data/model/product_model.dart';
 
+part 'home_bloc.freezed.dart';
 part 'home_event.dart';
 part 'home_state.dart';
-part 'home_bloc.freezed.dart';
 
 @lazySingleton
 class HomeBloc extends Bloc<HomeEvent, HomeState> {

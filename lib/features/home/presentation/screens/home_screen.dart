@@ -9,9 +9,9 @@ import 'package:project_init/features/common/app_scaffold.dart';
 import 'package:project_init/features/common/app_spacing.dart';
 import 'package:project_init/features/common/app_state_wrapper.dart';
 import 'package:project_init/features/common/cart_widget.dart';
-import 'package:project_init/features/product/data/model/product_model.dart';
 import 'package:project_init/features/common/shoe_container.dart';
 import 'package:project_init/features/home/presentation/bloc/home_bloc.dart';
+import 'package:project_init/features/product/data/model/product_model.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {
