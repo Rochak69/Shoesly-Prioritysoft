@@ -17,6 +17,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   CartBloc() : super(const _CartState()) {
     on<_AddToCart>(_addToCart);
     on<_RemoveFromCart>(_removeFromCart);
+    on<_ReturnInitial>(_returnInitial);
   }
 
   FutureOr<void> _addToCart(_AddToCart event, Emitter<CartState> emit) {
@@ -27,13 +28,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       (e) {
         if (e.product?.id == event.product.id) {
           isExistingItem = true;
-          return e.copyWith(count: e.count + 1);
+          return e.copyWith(count: e.count + (event.count ?? 1));
         }
         return e;
       },
     ).toList();
     if (!isExistingItem) {
-      cartItems.add(CartModel(product: event.product));
+      cartItems.add(CartModel(product: event.product, count: event.count ?? 1));
     }
     emit(state.copyWith(cartItems: cartItems));
   }
@@ -46,7 +47,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     var isExistingItem = false;
     if (event.deleteAll) {
       cartItems.removeWhere(
-        (element) => element.product!.id == element.product!.id,
+        (element) => element.product!.id == event.id,
       );
     } else {
       cartItems = cartItems.map(
@@ -66,5 +67,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     }
 
     emit(state.copyWith(cartItems: cartItems));
+  }
+
+  FutureOr<void> _returnInitial(_ReturnInitial event, Emitter<CartState> emit) {
+    emit(const CartState());
   }
 }

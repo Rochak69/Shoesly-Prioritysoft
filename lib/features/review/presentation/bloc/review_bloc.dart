@@ -39,10 +39,19 @@ class ReviewBloc extends Bloc<ReviewEvent, ReviewState> {
         emit(state.copyWith(theStates: TheStates.error));
       },
       (r) {
+        var averageReview = state.averageReviews ?? 0.0;
+        if (event.calculateReview) {
+          for (var i = 0; i < (r.data?.length ?? 0); i++) {
+            averageReview += r.data![i].rating;
+          }
+          averageReview = averageReview / (r.data?.length ?? 1);
+        }
+
         emit(
           state.copyWith(
             theStates: TheStates.success,
             reviews: r.data ?? [],
+            averageReviews: averageReview,
           ),
         );
       },

@@ -18,20 +18,26 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ReviewEvent {
   int get productId => throw _privateConstructorUsedError;
   String get selectedFilter => throw _privateConstructorUsedError;
+  bool get calculateReview => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int productId, String selectedFilter)
+    required TResult Function(
+            int productId, String selectedFilter, bool calculateReview)
         fetchAllReview,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int productId, String selectedFilter)? fetchAllReview,
+    TResult? Function(
+            int productId, String selectedFilter, bool calculateReview)?
+        fetchAllReview,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int productId, String selectedFilter)? fetchAllReview,
+    TResult Function(
+            int productId, String selectedFilter, bool calculateReview)?
+        fetchAllReview,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -63,7 +69,7 @@ abstract class $ReviewEventCopyWith<$Res> {
           ReviewEvent value, $Res Function(ReviewEvent) then) =
       _$ReviewEventCopyWithImpl<$Res, ReviewEvent>;
   @useResult
-  $Res call({int productId, String selectedFilter});
+  $Res call({int productId, String selectedFilter, bool calculateReview});
 }
 
 /// @nodoc
@@ -81,6 +87,7 @@ class _$ReviewEventCopyWithImpl<$Res, $Val extends ReviewEvent>
   $Res call({
     Object? productId = null,
     Object? selectedFilter = null,
+    Object? calculateReview = null,
   }) {
     return _then(_value.copyWith(
       productId: null == productId
@@ -91,6 +98,10 @@ class _$ReviewEventCopyWithImpl<$Res, $Val extends ReviewEvent>
           ? _value.selectedFilter
           : selectedFilter // ignore: cast_nullable_to_non_nullable
               as String,
+      calculateReview: null == calculateReview
+          ? _value.calculateReview
+          : calculateReview // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -103,7 +114,7 @@ abstract class _$$FetchAllReviewsImplCopyWith<$Res>
       __$$FetchAllReviewsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int productId, String selectedFilter});
+  $Res call({int productId, String selectedFilter, bool calculateReview});
 }
 
 /// @nodoc
@@ -119,6 +130,7 @@ class __$$FetchAllReviewsImplCopyWithImpl<$Res>
   $Res call({
     Object? productId = null,
     Object? selectedFilter = null,
+    Object? calculateReview = null,
   }) {
     return _then(_$FetchAllReviewsImpl(
       productId: null == productId
@@ -129,6 +141,10 @@ class __$$FetchAllReviewsImplCopyWithImpl<$Res>
           ? _value.selectedFilter
           : selectedFilter // ignore: cast_nullable_to_non_nullable
               as String,
+      calculateReview: null == calculateReview
+          ? _value.calculateReview
+          : calculateReview // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -137,17 +153,22 @@ class __$$FetchAllReviewsImplCopyWithImpl<$Res>
 
 class _$FetchAllReviewsImpl implements _FetchAllReviews {
   const _$FetchAllReviewsImpl(
-      {required this.productId, this.selectedFilter = 'All'});
+      {required this.productId,
+      this.selectedFilter = 'All',
+      this.calculateReview = false});
 
   @override
   final int productId;
   @override
   @JsonKey()
   final String selectedFilter;
+  @override
+  @JsonKey()
+  final bool calculateReview;
 
   @override
   String toString() {
-    return 'ReviewEvent.fetchAllReview(productId: $productId, selectedFilter: $selectedFilter)';
+    return 'ReviewEvent.fetchAllReview(productId: $productId, selectedFilter: $selectedFilter, calculateReview: $calculateReview)';
   }
 
   @override
@@ -158,11 +179,14 @@ class _$FetchAllReviewsImpl implements _FetchAllReviews {
             (identical(other.productId, productId) ||
                 other.productId == productId) &&
             (identical(other.selectedFilter, selectedFilter) ||
-                other.selectedFilter == selectedFilter));
+                other.selectedFilter == selectedFilter) &&
+            (identical(other.calculateReview, calculateReview) ||
+                other.calculateReview == calculateReview));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, productId, selectedFilter);
+  int get hashCode =>
+      Object.hash(runtimeType, productId, selectedFilter, calculateReview);
 
   @JsonKey(ignore: true)
   @override
@@ -174,28 +198,33 @@ class _$FetchAllReviewsImpl implements _FetchAllReviews {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int productId, String selectedFilter)
+    required TResult Function(
+            int productId, String selectedFilter, bool calculateReview)
         fetchAllReview,
   }) {
-    return fetchAllReview(productId, selectedFilter);
+    return fetchAllReview(productId, selectedFilter, calculateReview);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int productId, String selectedFilter)? fetchAllReview,
+    TResult? Function(
+            int productId, String selectedFilter, bool calculateReview)?
+        fetchAllReview,
   }) {
-    return fetchAllReview?.call(productId, selectedFilter);
+    return fetchAllReview?.call(productId, selectedFilter, calculateReview);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int productId, String selectedFilter)? fetchAllReview,
+    TResult Function(
+            int productId, String selectedFilter, bool calculateReview)?
+        fetchAllReview,
     required TResult orElse(),
   }) {
     if (fetchAllReview != null) {
-      return fetchAllReview(productId, selectedFilter);
+      return fetchAllReview(productId, selectedFilter, calculateReview);
     }
     return orElse();
   }
@@ -232,12 +261,15 @@ class _$FetchAllReviewsImpl implements _FetchAllReviews {
 abstract class _FetchAllReviews implements ReviewEvent {
   const factory _FetchAllReviews(
       {required final int productId,
-      final String selectedFilter}) = _$FetchAllReviewsImpl;
+      final String selectedFilter,
+      final bool calculateReview}) = _$FetchAllReviewsImpl;
 
   @override
   int get productId;
   @override
   String get selectedFilter;
+  @override
+  bool get calculateReview;
   @override
   @JsonKey(ignore: true)
   _$$FetchAllReviewsImplCopyWith<_$FetchAllReviewsImpl> get copyWith =>
@@ -248,6 +280,7 @@ abstract class _FetchAllReviews implements ReviewEvent {
 mixin _$ReviewState {
   TheStates get theStates => throw _privateConstructorUsedError;
   List<ReviewModel> get reviews => throw _privateConstructorUsedError;
+  double? get averageReviews => throw _privateConstructorUsedError;
   String get selectedFilter => throw _privateConstructorUsedError;
   AppError get error => throw _privateConstructorUsedError;
 
@@ -265,6 +298,7 @@ abstract class $ReviewStateCopyWith<$Res> {
   $Res call(
       {TheStates theStates,
       List<ReviewModel> reviews,
+      double? averageReviews,
       String selectedFilter,
       AppError error});
 }
@@ -284,6 +318,7 @@ class _$ReviewStateCopyWithImpl<$Res, $Val extends ReviewState>
   $Res call({
     Object? theStates = null,
     Object? reviews = null,
+    Object? averageReviews = freezed,
     Object? selectedFilter = null,
     Object? error = null,
   }) {
@@ -296,6 +331,10 @@ class _$ReviewStateCopyWithImpl<$Res, $Val extends ReviewState>
           ? _value.reviews
           : reviews // ignore: cast_nullable_to_non_nullable
               as List<ReviewModel>,
+      averageReviews: freezed == averageReviews
+          ? _value.averageReviews
+          : averageReviews // ignore: cast_nullable_to_non_nullable
+              as double?,
       selectedFilter: null == selectedFilter
           ? _value.selectedFilter
           : selectedFilter // ignore: cast_nullable_to_non_nullable
@@ -319,6 +358,7 @@ abstract class _$$ReviewStateImplCopyWith<$Res>
   $Res call(
       {TheStates theStates,
       List<ReviewModel> reviews,
+      double? averageReviews,
       String selectedFilter,
       AppError error});
 }
@@ -336,6 +376,7 @@ class __$$ReviewStateImplCopyWithImpl<$Res>
   $Res call({
     Object? theStates = null,
     Object? reviews = null,
+    Object? averageReviews = freezed,
     Object? selectedFilter = null,
     Object? error = null,
   }) {
@@ -348,6 +389,10 @@ class __$$ReviewStateImplCopyWithImpl<$Res>
           ? _value._reviews
           : reviews // ignore: cast_nullable_to_non_nullable
               as List<ReviewModel>,
+      averageReviews: freezed == averageReviews
+          ? _value.averageReviews
+          : averageReviews // ignore: cast_nullable_to_non_nullable
+              as double?,
       selectedFilter: null == selectedFilter
           ? _value.selectedFilter
           : selectedFilter // ignore: cast_nullable_to_non_nullable
@@ -366,6 +411,7 @@ class _$ReviewStateImpl implements _ReviewState {
   const _$ReviewStateImpl(
       {this.theStates = TheStates.initial,
       final List<ReviewModel> reviews = const [],
+      this.averageReviews,
       this.selectedFilter = 'All',
       this.error = const InternalAppError()})
       : _reviews = reviews;
@@ -383,6 +429,8 @@ class _$ReviewStateImpl implements _ReviewState {
   }
 
   @override
+  final double? averageReviews;
+  @override
   @JsonKey()
   final String selectedFilter;
   @override
@@ -391,7 +439,7 @@ class _$ReviewStateImpl implements _ReviewState {
 
   @override
   String toString() {
-    return 'ReviewState(theStates: $theStates, reviews: $reviews, selectedFilter: $selectedFilter, error: $error)';
+    return 'ReviewState(theStates: $theStates, reviews: $reviews, averageReviews: $averageReviews, selectedFilter: $selectedFilter, error: $error)';
   }
 
   @override
@@ -402,14 +450,21 @@ class _$ReviewStateImpl implements _ReviewState {
             (identical(other.theStates, theStates) ||
                 other.theStates == theStates) &&
             const DeepCollectionEquality().equals(other._reviews, _reviews) &&
+            (identical(other.averageReviews, averageReviews) ||
+                other.averageReviews == averageReviews) &&
             (identical(other.selectedFilter, selectedFilter) ||
                 other.selectedFilter == selectedFilter) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, theStates,
-      const DeepCollectionEquality().hash(_reviews), selectedFilter, error);
+  int get hashCode => Object.hash(
+      runtimeType,
+      theStates,
+      const DeepCollectionEquality().hash(_reviews),
+      averageReviews,
+      selectedFilter,
+      error);
 
   @JsonKey(ignore: true)
   @override
@@ -422,6 +477,7 @@ abstract class _ReviewState implements ReviewState {
   const factory _ReviewState(
       {final TheStates theStates,
       final List<ReviewModel> reviews,
+      final double? averageReviews,
       final String selectedFilter,
       final AppError error}) = _$ReviewStateImpl;
 
@@ -429,6 +485,8 @@ abstract class _ReviewState implements ReviewState {
   TheStates get theStates;
   @override
   List<ReviewModel> get reviews;
+  @override
+  double? get averageReviews;
   @override
   String get selectedFilter;
   @override

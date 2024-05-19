@@ -13,7 +13,7 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i4;
 
-import '../../features/cart/presentation/bloc/cart_bloc.dart' as _i7;
+import '../../features/cart/presentation/bloc/cart_bloc.dart' as _i8;
 import '../../features/home/data/repository/home_repository_impl.dart' as _i16;
 import '../../features/home/data/source/home_remote_source.dart' as _i6;
 import '../../features/home/domain/repository/home_repository.dart' as _i15;
@@ -21,7 +21,7 @@ import '../../features/home/domain/usecase/get_products_usecase.dart' as _i17;
 import '../../features/home/presentation/bloc/home_bloc.dart' as _i18;
 import '../../features/review/data/repository/review_repository_impl.dart'
     as _i11;
-import '../../features/review/data/source/review_remote_source.dart' as _i8;
+import '../../features/review/data/source/review_remote_source.dart' as _i7;
 import '../../features/review/domain/repository/review_repository.dart' as _i10;
 import '../../features/review/domain/usecase/get_reviews_usecase.dart' as _i13;
 import '../../features/review/presentation/bloc/review_bloc.dart' as _i14;
@@ -49,11 +49,11 @@ extension GetItInjectableX on _i1.GetIt {
     );
     gh.factory<_i5.AppFirestore>(() => _i5.AppFirestore());
     gh.factory<_i6.HomeRemoteSource>(() => _i6.HomeRemoteSource());
-    gh.factory<_i7.CartBloc>(() => _i7.CartBloc());
-    gh.factory<_i8.ReviewRemoteSource>(() => _i8.ReviewRemoteSource());
+    gh.factory<_i7.ReviewRemoteSource>(() => _i7.ReviewRemoteSource());
+    gh.factory<_i8.CartBloc>(() => _i8.CartBloc());
     gh.singleton<_i9.FlutterSecureStorage>(() => registerModule.secureStore);
     gh.lazySingleton<_i10.ReviewRepository>(
-        () => _i11.ReviewRepositoryImpl(gh<_i8.ReviewRemoteSource>()));
+        () => _i11.ReviewRepositoryImpl(gh<_i7.ReviewRemoteSource>()));
     gh.factory<_i12.Preferences>(
         () => _i12.Preferences(gh<_i9.FlutterSecureStorage>()));
     gh.lazySingleton<_i13.GetReviewsUsecase>(

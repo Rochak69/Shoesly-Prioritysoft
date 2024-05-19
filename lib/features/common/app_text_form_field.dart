@@ -50,35 +50,14 @@ class AppTextFormField extends StatelessWidget {
       keyboardType: textInputType,
       controller: textEditingController,
       textInputAction: textInputAction,
+      autofocus: true,
+      style: const TextStyle(color: AppColors.black),
       decoration: InputDecoration(
         filled: true,
         isDense: true,
         fillColor: AppColors.colorWhite,
         hintText: hintText,
         contentPadding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-        enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.textFieldGrey),
-        ),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(width: 2, color: AppColors.textFieldGrey),
-        ),
-        errorBorder: const OutlineInputBorder(
-          borderSide: BorderSide(
-            width: 2,
-            color: AppColors.colorRed,
-          ),
-        ),
-        errorStyle: const TextStyle(
-          color: AppColors.colorRed,
-          fontSize: 11,
-          fontWeight: FontWeight.w500,
-        ),
-        focusedErrorBorder: const OutlineInputBorder(
-          borderSide: BorderSide(
-            width: 2,
-            color: AppColors.colorRed,
-          ),
-        ),
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
       ),

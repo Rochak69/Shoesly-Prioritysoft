@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_init/constants/app_colors.dart';
+import 'package:project_init/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:project_init/features/common/app_outlined_button.dart';
 import 'package:project_init/features/common/app_scaffold.dart';
 import 'package:project_init/features/common/app_spacing.dart';
@@ -136,7 +138,13 @@ class OrderSummaryScreen extends StatelessWidget {
                   ],
                 ),
                 AppOutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    BlocProvider.of<CartBloc>(context)
+                        .add(const CartEvent.returnInitial());
+                    AutoRouter.of(context).popUntil(
+                      (route) => route.isFirst,
+                    );
+                  },
                   text: 'Payment',
                 ),
               ],

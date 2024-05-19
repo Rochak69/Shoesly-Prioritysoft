@@ -23,8 +23,17 @@ class _ReviewScreenState extends State<ReviewScreen> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<ReviewBloc>(context)
-        .add(ReviewEvent.fetchAllReview(productId: widget.shoeId));
+    BlocProvider.of<ReviewBloc>(context).add(
+      ReviewEvent.fetchAllReview(
+        productId: widget.shoeId,
+        calculateReview: true,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -43,7 +52,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                   ),
                   const HorizontalSpacing(5),
                   Text(
-                    '4.5',
+                    '${state.averageReviews?.toStringAsFixed(2) ?? 0}',
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   const HorizontalSpacing(15),

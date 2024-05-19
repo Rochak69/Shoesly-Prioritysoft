@@ -168,13 +168,6 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
           AutoRouter.of(context).push(const FilterRoute());
-          // TODO(Rochak): remove
-          // final data = productsStatic.map(
-          //   (e) => e.toJson(),
-          // );
-          // for (int i = 0; i < 20; i++) {
-          // AppFirestore.products().set({"data": data});
-          // }
         },
         label: Row(
           children: [
