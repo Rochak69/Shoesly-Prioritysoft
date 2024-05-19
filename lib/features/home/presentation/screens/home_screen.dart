@@ -137,7 +137,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   const HorizontalSpacing(5),
                                   Text(
-                                    '(${state.products[index].reviews} Reviews)',
+                                    '(${state.products[index].reviews} '
+                                    'Reviews)',
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodySmall!
@@ -166,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () async {
+        onPressed: () {
           AutoRouter.of(context).push(const FilterRoute());
         },
         label: Row(

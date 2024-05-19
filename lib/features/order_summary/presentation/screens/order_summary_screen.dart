@@ -11,6 +11,7 @@ import 'package:project_init/features/common/top_shadow_box_decoration.dart';
 
 import 'package:project_init/features/order_summary/presentation/widgets/order_detail_tile.dart';
 import 'package:project_init/features/order_summary/presentation/widgets/payment_option_tile.dart';
+import 'package:project_init/firestore/app_firestore.dart';
 
 @RoutePage()
 class OrderSummaryScreen extends StatelessWidget {
@@ -139,6 +140,12 @@ class OrderSummaryScreen extends StatelessWidget {
                 ),
                 AppOutlinedButton(
                   onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Order Created'),
+                      ),
+                    );
+                    AppFirestore.orders().add({'data': 'New Order'});
                     BlocProvider.of<CartBloc>(context)
                         .add(const CartEvent.returnInitial());
                     AutoRouter.of(context).popUntil(

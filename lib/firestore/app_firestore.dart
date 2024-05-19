@@ -13,6 +13,10 @@ class AppFirestore {
     return firestore.collection('products').doc('allProducts');
   }
 
+  static CollectionReference<Map<String, dynamic>> orders() {
+    return firestore.collection('orders');
+  }
+
   static DocumentReference<Map<String, dynamic>> reviewsDocument(
     String id,
   ) {

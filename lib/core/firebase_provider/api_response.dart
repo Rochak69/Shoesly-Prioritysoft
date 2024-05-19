@@ -11,15 +11,6 @@ class ApiResponse<T> {
 class ApiResponseForList<T> {
   ApiResponseForList({this.data, this.paginationInfo});
 
-  ApiResponseForList.fromJson(Map<String, dynamic> json) {
-    if (json['data'] != null) {
-      data = <T>[]; // Initialize the list with the correct type T
-      json['data'].forEach((dynamic v) {
-        data!.add(v as T); // Typecast v as T and add it to the list
-      });
-    }
-    paginationInfo = PaginationInfo.fromResponse(json);
-  }
   List<T>? data;
   PaginationInfo? paginationInfo;
 
