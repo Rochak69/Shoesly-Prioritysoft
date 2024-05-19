@@ -12,7 +12,6 @@ import 'package:project_init/core/route/app_router.dart';
 import 'package:project_init/core/theme/app_theme.dart';
 import 'package:project_init/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:project_init/features/home/presentation/bloc/home_bloc.dart';
-import 'package:project_init/features/login/presentation/bloc/login_bloc.dart';
 import 'package:project_init/features/review/presentation/bloc/review_bloc.dart';
 import 'package:project_init/firebase_options.dart';
 import 'package:project_init/firestore/app_firestore.dart';
@@ -72,9 +71,6 @@ class MyApp extends StatelessWidget {
       },
       child: MultiBlocProvider(
         providers: [
-          BlocProvider<LoginBloc>(
-            create: (BuildContext context) => sl<LoginBloc>(),
-          ),
           BlocProvider<HomeBloc>(
             create: (BuildContext context) => sl<HomeBloc>(),
           ),

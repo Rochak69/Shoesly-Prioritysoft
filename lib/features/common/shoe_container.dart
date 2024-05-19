@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:project_init/constants/app_colors.dart';
-import 'package:project_init/features/common/model/product_model.dart';
+import 'package:project_init/features/product/data/model/product_model.dart';
 
 class ShoeContainer extends StatelessWidget {
   const ShoeContainer({

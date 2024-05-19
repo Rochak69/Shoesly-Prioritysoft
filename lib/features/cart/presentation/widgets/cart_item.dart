@@ -9,7 +9,6 @@ import 'package:project_init/constants/app_images.dart';
 import 'package:project_init/features/cart/data/model/cart_model.dart';
 import 'package:project_init/features/cart/presentation/bloc/cart_bloc.dart';
 import 'package:project_init/features/common/app_spacing.dart';
-import 'package:project_init/features/common/model/product_model.dart';
 
 class CartItem extends StatefulWidget {
   const CartItem({required this.item, super.key});
@@ -49,7 +48,7 @@ class _CartItemState extends State<CartItem>
               if (context.mounted) {
                 BlocProvider.of<CartBloc>(context).add(
                   CartEvent.removeFromCart(
-                      id: widget.item.product!.id, deleteAll: true),
+                      id: widget.item.product!.id, deleteAll: true,),
                 );
               }
             },
@@ -122,7 +121,7 @@ class _CartItemState extends State<CartItem>
                           }
                           BlocProvider.of<CartBloc>(context).add(
                             CartEvent.removeFromCart(
-                                id: widget.item.product!.id),
+                                id: widget.item.product!.id,),
                           );
                         },
                         child: SvgPicture.asset(

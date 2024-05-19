@@ -10,7 +10,6 @@ import 'package:project_init/features/common/app_scaffold.dart';
 import 'package:project_init/features/common/app_spacing.dart';
 import 'package:project_init/features/common/custom_app_bar.dart';
 import 'package:project_init/features/common/top_shadow_box_decoration.dart';
-import 'package:project_init/features/order_summary/data/model/order_summary_model.dart';
 
 @RoutePage()
 class CartScreen extends StatelessWidget {
@@ -68,7 +67,7 @@ class CartScreen extends StatelessWidget {
                       AppOutlinedButton(
                         onPressed: () {
                           AutoRouter.of(context).push(
-                            OrderSummaryRoute(order: OrderSummaryModel()),
+                            OrderSummaryRoute(),
                           );
                         },
                         text: 'Check out',

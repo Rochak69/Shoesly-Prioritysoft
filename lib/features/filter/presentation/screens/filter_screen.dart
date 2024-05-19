@@ -1,12 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:project_init/constants/app_colors.dart';
-import 'package:project_init/core/route/app_router.dart';
 import 'package:project_init/features/common/app_outlined_button.dart';
 import 'package:project_init/features/common/app_scaffold.dart';
 import 'package:project_init/features/common/app_spacing.dart';
 import 'package:project_init/features/common/custom_app_bar.dart';
-import 'package:project_init/features/common/model/product_model.dart';
+import 'package:project_init/features/product/data/model/product_model.dart';
 import 'package:project_init/features/common/top_shadow_box_decoration.dart';
 import 'package:project_init/features/filter/presentation/widgets/color_selection_widget.dart';
 import 'package:project_init/features/filter/presentation/widgets/range_selector.dart';

@@ -6,8 +6,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:project_init/core/firebase_provider/api_error.dart';
 import 'package:project_init/enum/the_states.dart';
-import 'package:project_init/features/common/model/product_model.dart';
-import 'package:project_init/features/home/data/source/home_remote_source.dart';
+import 'package:project_init/features/product/data/model/product_model.dart';
+import 'package:project_init/features/home/domain/usecase/get_products_usecase.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
@@ -15,10 +15,10 @@ part 'home_bloc.freezed.dart';
 
 @lazySingleton
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc(this.remoteSource) : super(const _HomeState()) {
+  HomeBloc(this._getProductsUsecase) : super(const _HomeState()) {
     on<_GetAllProducts>(_getAllProducts, transformer: restartable());
   }
-  final HomeRemoteSource remoteSource;
+  final GetProductsUsecase _getProductsUsecase;
 
   FutureOr<void> _getAllProducts(
     _GetAllProducts event,
@@ -30,13 +30,24 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         selectedbrand: event.selectedbrand,
       ),
     );
-    final result =
-        await remoteSource.getAllProducts(selectedbrand: event.selectedbrand);
-    emit(
-      state.copyWith(
-        theStates: TheStates.success,
-        products: result.data ?? [],
-      ),
+    final result = await _getProductsUsecase
+        .call(GetProductsParam(selectedbrand: event.selectedbrand));
+    result.fold(
+      (l) {
+        emit(
+          state.copyWith(
+            theStates: TheStates.error,
+          ),
+        );
+      },
+      (r) {
+        emit(
+          state.copyWith(
+            theStates: TheStates.success,
+            products: r.data ?? [],
+          ),
+        );
+      },
     );
   }
 }

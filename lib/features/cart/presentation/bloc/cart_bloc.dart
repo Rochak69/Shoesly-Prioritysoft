@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 import 'package:project_init/core/firebase_provider/api_error.dart';
 import 'package:project_init/enum/the_states.dart';
 import 'package:project_init/features/cart/data/model/cart_model.dart';
-import 'package:project_init/features/common/model/product_model.dart';
+import 'package:project_init/features/product/data/model/product_model.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';

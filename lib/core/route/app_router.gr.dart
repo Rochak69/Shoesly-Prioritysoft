@@ -33,20 +33,10 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const HomeScreen(),
       );
     },
-    LoginRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const LoginScreen(),
-      );
-    },
     OrderSummaryRoute.name: (routeData) {
-      final args = routeData.argsAs<OrderSummaryRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: OrderSummaryScreen(
-          order: args.order,
-          key: args.key,
-        ),
+        child: const OrderSummaryScreen(),
       );
     },
     ProductRoute.name: (routeData) {
@@ -127,55 +117,17 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [LoginScreen]
-class LoginRoute extends PageRouteInfo<void> {
-  const LoginRoute({List<PageRouteInfo>? children})
-      : super(
-          LoginRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'LoginRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
 /// [OrderSummaryScreen]
-class OrderSummaryRoute extends PageRouteInfo<OrderSummaryRouteArgs> {
-  OrderSummaryRoute({
-    required OrderSummaryModel order,
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
+class OrderSummaryRoute extends PageRouteInfo<void> {
+  const OrderSummaryRoute({List<PageRouteInfo>? children})
+      : super(
           OrderSummaryRoute.name,
-          args: OrderSummaryRouteArgs(
-            order: order,
-            key: key,
-          ),
           initialChildren: children,
         );
 
   static const String name = 'OrderSummaryRoute';
 
-  static const PageInfo<OrderSummaryRouteArgs> page =
-      PageInfo<OrderSummaryRouteArgs>(name);
-}
-
-class OrderSummaryRouteArgs {
-  const OrderSummaryRouteArgs({
-    required this.order,
-    this.key,
-  });
-
-  final OrderSummaryModel order;
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'OrderSummaryRouteArgs{order: $order, key: $key}';
-  }
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
